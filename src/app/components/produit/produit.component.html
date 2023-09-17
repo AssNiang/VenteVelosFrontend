@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+    <span>Liste des produits</span>
+</mat-toolbar>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+        <!-- numero Column -->
+        <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par numero"> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.numero}} </td>
+        </ng-container>
+
+        <!-- nom Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par nom"> nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        </ng-container>
+
+        <!-- categorie Column -->
+        <ng-container matColumnDef="categorie">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par categorie"> categorie </th>
+            <td mat-cell *matCellDef="let element"> {{element.categorie}} </td>
+        </ng-container>
+
+        <!-- marque Column -->
+        <ng-container matColumnDef="marque">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par marque"> marque </th>
+            <td mat-cell *matCellDef="let element"> {{element.marque}} </td>
+        </ng-container>
+
+        <!-- annee modele Column -->
+        <ng-container matColumnDef="annee modele">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par annee modele"> annee modele </th>
+            <td mat-cell *matCellDef="let element"> {{element.annee_model}} </td>
+        </ng-container>
+
+        <!-- prix depart Column -->
+        <ng-container matColumnDef="prix depart">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Trier par prix depart"> prix depart </th>
+            <td mat-cell *matCellDef="let element"> {{element.prix_depart}} </td>
+        </ng-container>
+
+        <!-- order Column -->
+        <ng-container matColumnDef="commander">
+            <th mat-header-cell *matHeaderCellDef> Commander </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" (click)="orderProduct({element : element})" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                    </svg>
+                </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
