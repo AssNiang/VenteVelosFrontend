@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { ProduitService } from "../../shared/services/produit/produit.service";
@@ -6,6 +6,10 @@ import { Produit } from "../../models/produit";
 import {Subject} from "rxjs";
 import {MatSort, Sort} from "@angular/material/sort";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {FormsModule} from "@angular/forms";
 
 
 @Component({
@@ -20,8 +24,14 @@ export class ProduitComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataReadySubject = new Subject<void>();
+  private quantity: number = 1;
+  private selected_product_id: string = "";
 
-  constructor(private produitService: ProduitService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(
+    private produitService: ProduitService,
+    private _liveAnnouncer: LiveAnnouncer,
+    public dialog: MatDialog
+  ) {
   }
 
   getData() {
@@ -69,10 +79,24 @@ export class ProduitComponent implements AfterViewInit {
   }
 
 
-  orderProduct({element}: { element: any }) {
-    console.log(element);
+  openDialog({id}: { id: string }) {
+    console.log(id);
+    this.selected_product_id = id;
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      data: this.quantity,
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.quantity = result;
+
+      // save the command.
+      this.saveOrder();
+
+    });
+
     //-----------------------------------------------------------------------------------------------------
-    // open a pop and ask him to fullfill the remaining fields (https://jacobnarayan.com/blogs/how-to-easily-create-a-popup-with-angular-material)
+    // open a pop up and ask him to fullfill the remaining fields (https://jacobnarayan.com/blogs/how-to-easily-create-a-popup-with-angular-material)
       // like magasin plus proche (disposant du produit == stock non vide)
       // date livraision
       // infos client
@@ -90,5 +114,31 @@ export class ProduitComponent implements AfterViewInit {
     // add column in the list of products to show the state of the stock (sum in all shops by product)
     // tell to the visitor that it is possible to sort products by column name using modals (https://blog.hubspot.com/website/add-bootstrap-to-angular-2)
 
+  }
+
+  saveOrder() {
+    console.log("quantity: " + this.quantity + ", productNumber: " + this.selected_product_id);
+  }
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: '../dialog-overview-example-dialog.html',
+  standalone: true,
+  imports: [
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule
+  ]
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: number,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

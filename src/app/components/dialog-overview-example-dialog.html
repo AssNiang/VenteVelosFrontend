@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Completez la commande</h1>
+<div mat-dialog-content>
+  <p>Combien d'articles oulez-vous commander ?</p>
+  <mat-form-field>
+    <mat-label>Quantite</mat-label>
+    <input matInput [(ngModel)]="data">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" color="secondary">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Valider</button>
+</div>
