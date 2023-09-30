@@ -1,0 +1,8 @@
+
+.bg-im {
+  height: 650px;
+  width: 100%;
+  margin: 0;
+  background-image: url("../../../assets/images/home.jpeg");
+  background-size: cover;
+}

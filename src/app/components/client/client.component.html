@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+  <span>Complétez votre commande en enregistrant vos données</span>
+</mat-toolbar>
+
+<mat-card  style="padding: 10px">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput placeholder="Serigne Fallou"  [formControl]="prenom">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="MBENGUE"  [formControl]="nom">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Téléphone</mat-label>
+      <input matInput placeholder="771234567"  [formControl]="telephone">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field  appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email">
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input matInput placeholder="Parcelles Assainies"  [formControl]="adresse">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Ville</mat-label>
+      <input matInput placeholder="Dakar"  [formControl]="ville">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Etat</mat-label>
+      <input matInput placeholder="Sénégal"  [formControl]="etat">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Code zip</mat-label>
+      <input matInput placeholder="99341" [formControl]="codeZip">
+    </mat-form-field>
+  </div>
+
+  <div>
+      <button mat-button mat-raised-button color="primary" (click)="save()">Soumettre</button>
+      <button mat-button mat-raised-button routerLink="/">Annuler</button>
+  </div>
+
+</mat-card>
+
+

@@ -10,6 +10,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -24,10 +25,11 @@ export class ProduitComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataReadySubject = new Subject<void>();
-  private quantity: number = 1;
+  private quantity: number | any;
   private selected_product_id: string = "";
 
   constructor(
+    private router: Router,
     private produitService: ProduitService,
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog
@@ -118,6 +120,9 @@ export class ProduitComponent implements AfterViewInit {
 
   saveOrder() {
     console.log("quantity: " + this.quantity + ", productNumber: " + this.selected_product_id);
+    if(this.quantity){
+      this.router.navigate(['addClient', {quantity: this.quantity, selected_product_id: this.selected_product_id}]);
+    }
   }
 }
 

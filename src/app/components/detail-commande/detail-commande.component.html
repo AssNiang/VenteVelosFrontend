@@ -1,0 +1,68 @@
+<!--<mat-card *ngIf="commande_infos && produit_infos" class="border border-primary m-3">-->
+<!--  <mat-card-title class="text-light bg-primary p-3">Details commande</mat-card-title>-->
+<!--  <mat-card-content class="fs-6 p-3">-->
+<!--    <div style="font-family: 'Arial', sans-serif;">-->
+<!--      <div style="padding: 5px 0;">Numero : {{ commande_infos.numero }}</div>-->
+<!--      <div style="padding: 5px 0;">Date Commande : {{ commande_infos.date_commande }}</div>-->
+<!--      <div style="padding: 5px 0;">Date Livraison : {{ commande_infos.date_livraison }}</div>-->
+<!--      <div style="padding: 5px 0;">Statut : {{ commande_infos.statut }}</div>-->
+<!--      <div style="padding: 5px 0;">Magasin : {{ commande_infos.magasin.nom }}</div>-->
+<!--      <div style="padding: 5px 0;">Client :</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">ID : {{ commande_infos.client.id }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Nom : {{ commande_infos.client.nom }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Prenom : {{ commande_infos.client.prenom }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Adresse : {{ commande_infos.client.adresse }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Code ZIP : {{ commande_infos.client.code_zip }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Email : {{ commande_infos.client.email }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Etat : {{ commande_infos.client.etat }}</div>-->
+<!--&lt;!&ndash;      <div style="padding-left: 20px; padding-bottom: 5px;">Telephone : {{ commande_infos.client.telephone }}</div>&ndash;&gt;-->
+<!--      <div style="padding-left: 20px;">Ville : {{ commande_infos.client.ville }}</div>-->
+<!--      &lt;!&ndash; Add more client details as needed &ndash;&gt;-->
+<!--      <div style="padding: 5px 0;">Produit :</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">ID : {{ produit_infos.id}}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Nom : {{ produit_infos.nom }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Année du modèle : {{ produit_infos.annee_model }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Prix de départ : {{ produit_infos.prix_depart }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Catégorie : {{ produit_infos.categorie.nom }}</div>-->
+<!--      <div style="padding-left: 20px; padding-bottom: 5px;">Marque : {{ produit_infos.marque.nom }}</div>-->
+<!--    </div>-->
+<!--  </mat-card-content>-->
+<!--</mat-card>-->
+
+<mat-card *ngIf="articleCommande" class="border border-primary m-3">
+  <mat-card-title class="text-light bg-primary p-3">Details commande</mat-card-title>
+  <mat-card-content class="fs-6 p-3">
+    <div style="font-family: 'Arial', sans-serif;">
+
+      <div style="padding: 5px 0;">Commande :</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Numero : {{ articleCommande.commande.numero }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Date Commande : {{ articleCommande.commande.date_commande }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Date Livraison : {{ articleCommande.commande.date_livraison }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Statut : {{ articleCommande.commande.statut }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Magasin : {{ articleCommande.commande.magasin.nom }}</div>
+
+      <div style="padding-left: 20px; padding-bottom: 5px;">Client :</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">ID : {{ articleCommande.commande.client.id }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Nom : {{ articleCommande.commande.client.nom }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Prenom : {{ articleCommande.commande.client.prenom }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Adresse : {{ articleCommande.commande.client.adresse }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Code ZIP : {{ articleCommande.commande.client.code_zip }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Email : {{ articleCommande.commande.client.email }}</div>
+      <div style="padding-left: 30px; padding-bottom: 5px;">Etat : {{ articleCommande.commande.client.etat }}</div>
+      <div style="padding-left: 30px;">Ville : {{ articleCommande.commande.client.ville }}</div>
+
+      <div style="padding: 5px 0;">Produit :</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">ID : {{ articleCommande.produit.id }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Nom : {{ articleCommande.produit.nom }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Année du modèle : {{ articleCommande.produit.annee_model }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Prix de départ (unitaire) : {{ articleCommande.produit.prix_depart }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Catégorie : {{ articleCommande.produit.categorie.nom }}</div>
+      <div style="padding-left: 20px; padding-bottom: 5px;">Marque : {{ articleCommande.produit.marque.nom }}</div>
+
+      <div style="padding: 5px 0;">Ligne : {{ articleCommande.ligne }}</div>
+      <div style="padding: 5px 0;">Quantité : {{ articleCommande.quantite }}</div>
+      <div style="padding: 5px 0;">Remise : {{ articleCommande.remise }}</div>
+      <div style="padding: 5px 0; font-weight: bold;">Prix de départ (total): {{ articleCommande.prix_depart }}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

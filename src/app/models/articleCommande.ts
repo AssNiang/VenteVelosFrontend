@@ -1,4 +1,4 @@
-export interface articleCommande {
+export interface ArticleCommande {
   commande: {
     client: {
       id: number;
